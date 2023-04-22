@@ -1,7 +1,8 @@
 interface Array<T> {
   shuffle(): Array<T>;
   chunk(n: number): Array<T>;
-  compact(): Array<T>;
+  truthy(): Array<T>;
+  falsy(): Array<T>;
   deepFlat(): Array<T>;
   math(operand: string, number?: number): Array<T>;
   matrixMath(callback: (n: number, i: number) => number, arr2: any[]): Array<T>;
@@ -19,12 +20,13 @@ interface Array<T> {
   padEnd(padding: number, value:any): Array<T>;
   occurrences(): Map<T, number>;
   uniqueBy(value: T): Array<T>;
+  move(from: number, to: number): Array<T>;
+  swap(from: number, to: number): Array<T>;
+  nthIndex(n: number): Array<T>;
+  nthItem(n: number): Array<T>;
+  strictEq(arr2: any[]): boolean;
+  looseEq(arr2: any[]): boolean;
 };
-
-const alphabet = new Set('abcdefghijklmnopqrstuvwxyz');
-const numbers = new Set('0123456789');
-
-
 
 // shuffles array in place (mutates array)
 Array.prototype.shuffle = function() {
@@ -44,8 +46,13 @@ Array.prototype.chunk = function(n: number) {
 }
 
 // removes falsey values from array (mutates array)
-Array.prototype.compact = function() {
+Array.prototype.truthy = function() {
     return this.filter(Boolean);
+}
+
+//removes truthey values from array (mutates array)
+Array.prototype.falsy = function() {
+    return this.filter((n) => !n);
 }
 
 //completely flattens an array (creates new array)
@@ -90,6 +97,40 @@ Array.prototype.math = function(operand: string, number: number) {
     });
  }
 
+ // returns whether or not two array are equal in size, index, and values
+  Array.prototype.strictEq = function(arr2) {
+    if(arr2.length !== this.length) return false;
+
+    for(let i = 0; i < this.length; i++) {
+      if(arr2[i] !== this[i]) return false;
+    }
+
+    return true;
+  }
+
+  //returns weather or not two arrays are equal in size, values
+  Array.prototype.looseEq = function(arr2) {
+    if(arr2.length !== this.length) return false;
+
+    for(let i = 0; i < this.length; i++) {
+      if(!arr2.includes(this[i])) return false;
+    }
+
+    return true;
+  }
+
+ //moves and item to a different index in an array (mutates array)
+  Array.prototype.move = function(from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+    return this;
+  }
+
+   // swap two indeces in an array (mutates array)
+   Array.prototype.swap = function(from, to) {
+    [this[from], this[to]] = [this[to], this[from]];
+    return this;
+  }
+
  //returns the intersection between two arrays (creates new array)
   Array.prototype.intersection = function(arr2) {
     let arr2copy = [...arr2];
@@ -117,6 +158,16 @@ Array.prototype.math = function(operand: string, number: number) {
   //picks a random element from an array 
   Array.prototype.random = function() {
     return this[Math.floor(Math.random() * this.length)];
+  }
+
+  //returns everyNth element of an array
+  Array.prototype.nthIndex = function(n: number) {
+    return this.filter((_, i) => i % n === 0);
+  }
+
+  //returns everyNth element of an array
+  Array.prototype.nthItem = function(n: number) {
+    return this.filter(x => x % n === 0);
   }
 
   //finds the average of an array
@@ -185,10 +236,10 @@ Array.prototype.math = function(operand: string, number: number) {
   }
 
 
-let testArray = [2, 2, 2 ,2, 10, 10, 10, 10];
-let testArray2 = [1, 2, 'b', 4, 5, 6, 7, 8, 9, 10, 'a'];
+let testArray = [ , 3, 2, 4, 5, 6, 7, 8, undefined, null, 0];
+let testArray2 = [1, 2, 3 ,4, 5, 6, 7, 8, undefined, null, 0];
 
-let x = testArray.uniqueBy();
+let x = testArray.looseEq(testArray2);
 x;
 testArray2
 testArray;
