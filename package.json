@@ -1,7 +1,7 @@
 {
   "name": "@broilan/better-arrays",
   "private": false,
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,8 +13,10 @@
     "vite": "^4.3.0"
   },
   "description": "Library of array methods",
-  "main": "main.ts",
+  "main": "lib/index.ts",
+  "types": "lib/index.d.ts",
   "dependencies": {
+    "@broilan/better-arrays": "^0.0.0",
     "esbuild": "^0.17.17",
     "nanoid": "^3.3.6",
     "picocolors": "^1.0.0",

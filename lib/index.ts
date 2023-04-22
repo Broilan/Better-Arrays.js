@@ -1,34 +1,3 @@
-interface Array<T> {
-  shuffle(): Array<T>;
-  chunk(n: number): Array<T>;
-  truthy(): Array<T>;
-  falsy(): Array<T>;
-  deepFlat(): Array<T>;
-  math(operand: string, number?: number): Array<T>;
-  matrixMath(callback: (n: number, i: number) => number, arr2: any[]): Array<T>;
-  intersection(arr2: any[]): Array<T>;
-  unique(): Array<T>;
-  random(): T;
-  mean(): number;
-  median(): number;
-  mode(): Array<T> | number | null;
-  range(): number;
-  sd(): number;
-  variance(): number;
-  tail(number: number): Array<T>;
-  padStart(padding: number, value:any): Array<T>;
-  padEnd(padding: number, value:any): Array<T>;
-  occurrences(): Map<T, number>;
-  uniqueBy(value: T): Array<T>;
-  move(from: number, to: number): Array<T>;
-  swap(from: number, to: number): Array<T>;
-  nthIndex(n: number): Array<T>;
-  nthItem(n: number): Array<T>;
-  strictEq(arr2: any[]): boolean;
-  looseEq(arr2: any[]): boolean;
-  rotate(n: number): Array<T>;
-};
-
 // shuffles array in place (mutates array)
 Array.prototype.shuffle = function() {
     let i = this.length;
@@ -43,8 +12,10 @@ Array.prototype.shuffle = function() {
 
 // breaks array into chunks of size n (creates new array)
 Array.prototype.chunk = function(n: number) {
-    return Array(Math.ceil(this.length / n)).fill(0).map((_, i) => this.slice(i * n, i * n + n));
+    return Array(Math.ceil(this.length / n)).fill(0).map((_: any, i: number) => this.slice(i * n, i * n + n));
 }
+
+console.log('hi');
 
 // removes falsey values from array (mutates array)
 Array.prototype.truthy = function() {
@@ -53,17 +24,17 @@ Array.prototype.truthy = function() {
 
 //removes truthey values from array (mutates array)
 Array.prototype.falsy = function() {
-    return this.filter((n) => !n);
+    return this.filter((n: any) => !n);
 }
 
 //completely flattens an array (creates new array)
 Array.prototype.deepFlat = function() {
-    return this.toString().split(',').map((n) => isNaN(Number(n)) ? n : Number(n));
+    return this.toString().split(',').map((n:any) => isNaN(Number(n)) ? n : Number(n));
 }
 
 // perform an operation on each index (mutates array)
 Array.prototype.math = function(operand: string, number: number) {
-    return this.map((n) => {
+    return this.map((n: any) => {
         if (typeof n === 'number') {
             switch (operand) {
                 case '+':
@@ -90,8 +61,8 @@ Array.prototype.math = function(operand: string, number: number) {
  }
     
  // perform an operation between two indeces of two arrays (creates new array)
- Array.prototype.matrixMath = function(callback, arr2) {
-    return this.flatMap((n, i) => {
+ Array.prototype.matrixMath = function(callback:Function, arr2: any[]) {
+    return this.flatMap((n:any, i:number) => {
         if (typeof n === 'number' && typeof arr2[i] === 'number') {
             return callback(n, arr2[i]);
         } else return [n, arr2[i]];
@@ -99,7 +70,7 @@ Array.prototype.math = function(operand: string, number: number) {
  }
 
  // returns whether or not two array are equal in size, index, and values
-  Array.prototype.strictEq = function(arr2) {
+  Array.prototype.strictEq = function(arr2: any[]) {
     if(arr2.length !== this.length) return false;
 
     for(let i = 0; i < this.length; i++) {
@@ -110,7 +81,7 @@ Array.prototype.math = function(operand: string, number: number) {
   }
 
   //returns weather or not two arrays are equal in size, values
-  Array.prototype.looseEq = function(arr2) {
+  Array.prototype.looseEq = function(arr2: any[]) {
     if(arr2.length !== this.length) return false;
 
     for(let i = 0; i < this.length; i++) {
@@ -135,21 +106,21 @@ Array.prototype.math = function(operand: string, number: number) {
   }
 
  //moves and item to a different index in an array (mutates array)
-  Array.prototype.move = function(from, to) {
+  Array.prototype.move = function(from: number, to: number) {
     this.splice(to, 0, this.splice(from, 1)[0]);
     return this;
   }
 
    // swap two indeces in an array (mutates array)
-   Array.prototype.swap = function(from, to) {
+   Array.prototype.swap = function(from: number, to: number) {
     [this[from], this[to]] = [this[to], this[from]];
     return this;
   }
 
  //returns the intersection between two arrays (creates new array)
-  Array.prototype.intersection = function(arr2) {
+  Array.prototype.intersection = function(arr2: any[]) {
     let arr2copy = [...arr2];
-    return this.filter((n) => {
+    return this.filter((n: any) => {
         if (arr2copy.includes(n)) {
             arr2copy.splice(arr2copy.indexOf(n), 1);
             return true;
@@ -163,7 +134,7 @@ Array.prototype.math = function(operand: string, number: number) {
   }
 
   //removes all instances of a value except one
-  Array.prototype.uniqueBy = function(value) {
+  Array.prototype.uniqueBy = function(value: any) {
     while(this.indexOf(value) !== this.lastIndexOf(value) && this.length > 1) {
       this.splice(this.lastIndexOf(value), 1);
     };
@@ -177,22 +148,22 @@ Array.prototype.math = function(operand: string, number: number) {
 
   //returns everyNth element of an array
   Array.prototype.nthIndex = function(n: number) {
-    return this.filter((_, i) => i % n === 0);
+    return this.filter((_: any, i: number) => i % n === 0);
   }
 
   //returns everyNth element of an array
   Array.prototype.nthItem = function(n: number) {
-    return this.filter(x => x % n === 0);
+    return this.filter((x: number) => x % n === 0);
   }
 
   //finds the average of an array
   Array.prototype.mean = function() {
-    return this.reduce((a, b) => a + b) / this.length;
+    return this.reduce((a: number, b: number) => a + b) / this.length;
   }
 
   //finds the median of an array
   Array.prototype.median = function() {
-    let sorted = this.sort((a, b) => a - b);
+    let sorted = this.sort((a: number, b: number) => a - b);
     let middle = Math.floor(sorted.length / 2);
     if (sorted.length % 2) return sorted[middle];
     else return (sorted[middle - 1] + sorted[middle]) / 2;
@@ -208,21 +179,21 @@ Array.prototype.math = function(operand: string, number: number) {
 
   //finds the range of an array
   Array.prototype.range = function() {
-    let sorted = this.sort((a, b) => a - b);
+    let sorted = this.sort((a: number, b: number) => a - b);
     return sorted[sorted.length - 1] - sorted[0];
   }
 
   //finds the standard deviation of an array
   Array.prototype.sd = function() {
     let mean = this.mean();
-    let sum = this.reduce((a, b) => a + (b - mean) ** 2, 0);
+    let sum = this.reduce((a: number, b: number) => a + (b - mean) ** 2, 0);
     return Math.sqrt(sum / (this.length));
   }
 
   //finds the variance of an array
   Array.prototype.variance = function() {
     let mean = this.mean();
-    let sum = this.reduce((a, b) => a + (b - mean) ** 2, 0);
+    let sum = this.reduce((a: number, b: number) => a + (b - mean) ** 2, 0);
     return sum / (this.length);
   }
 
