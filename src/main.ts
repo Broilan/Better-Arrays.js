@@ -14,7 +14,11 @@ interface Array<T> {
   range(): number;
   sd(): number;
   variance(): number;
-
+  tail(number: number): Array<T>;
+  padStart(padding: number, value:any): Array<T>;
+  padEnd(padding: number, value:any): Array<T>;
+  occurrences(): Map<T, number>;
+  uniqueBy(value: T): Array<T>;
 };
 
 const alphabet = new Set('abcdefghijklmnopqrstuvwxyz');
@@ -101,6 +105,14 @@ Array.prototype.math = function(operand: string, number: number) {
   Array.prototype.unique = function() {
     return [...new Set(this)];
   }
+
+  //removes all instances of a value except one
+  Array.prototype.uniqueBy = function(value) {
+    while(this.indexOf(value) !== this.lastIndexOf(value) && this.length > 1) {
+      this.splice(this.lastIndexOf(value), 1);
+    };
+    return this;
+  }
   
   //picks a random element from an array 
   Array.prototype.random = function() {
@@ -148,11 +160,35 @@ Array.prototype.math = function(operand: string, number: number) {
     return sum / (this.length);
   }
 
-let testArray = [2, 10];
+  //returns the end of an array
+  Array.prototype.tail = function(number:number) {
+    let difference  = this.length - number;
+    let output = this.slice(difference > 0 ? difference : 0);
+    return output.length === 1 ? output[0] : output;
+  }
+  
+  //add padding to the start of an array
+  Array.prototype.padStart = function(padding: number, value: any) {  
+    return Array(padding).fill(value || 0).concat(this);
+  }
+
+  //add padding to the end
+  Array.prototype.padEnd = function(padding: number, value: any) { 
+    return this.concat(Array(padding).fill(value || 0));
+  }
+
+  //turns the array into an object baeed on callback 
+  Array.prototype.occurrences  = function() {
+    let counts = new Map();
+    this.forEach((n: any) => counts.has(n) ? counts.set(n, counts.get(n) + 1) : counts.set(n, 1));
+    return counts;
+  }
+
+
+let testArray = [2, 2, 2 ,2, 10, 10, 10, 10];
 let testArray2 = [1, 2, 'b', 4, 5, 6, 7, 8, 9, 10, 'a'];
 
-let x = testArray.sd();
-
+let x = testArray.uniqueBy();
 x;
 testArray2
 testArray;
