@@ -26,6 +26,7 @@ interface Array<T> {
   nthItem(n: number): Array<T>;
   strictEq(arr2: any[]): boolean;
   looseEq(arr2: any[]): boolean;
+  rotate(n: number): Array<T>;
 };
 
 // shuffles array in place (mutates array)
@@ -117,6 +118,20 @@ Array.prototype.math = function(operand: string, number: number) {
     }
 
     return true;
+  }
+
+  //rotate the items of an array by n (mutates array)
+  Array.prototype.rotate = function(n: number) {
+    if(n > 0) {
+      for(let i = 0; i < n; i++) {
+        this.unshift(this.pop());
+      }
+    } else if(n < 0) {
+      for(let i = 0; i > n; i--) {
+        this.push(this.shift());
+      }
+    }
+    return this;
   }
 
  //moves and item to a different index in an array (mutates array)
@@ -234,12 +249,3 @@ Array.prototype.math = function(operand: string, number: number) {
     this.forEach((n: any) => counts.has(n) ? counts.set(n, counts.get(n) + 1) : counts.set(n, 1));
     return counts;
   }
-
-
-let testArray = [ , 3, 2, 4, 5, 6, 7, 8, undefined, null, 0];
-let testArray2 = [1, 2, 3 ,4, 5, 6, 7, 8, undefined, null, 0];
-
-let x = testArray.looseEq(testArray2);
-x;
-testArray2
-testArray;
