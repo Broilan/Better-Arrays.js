@@ -6,13 +6,21 @@ interface Array<T> {
   math(operand: string, number?: number): Array<T>;
   matrixMath(callback: (n: number, i: number) => number, arr2: any[]): Array<T>;
   intersection(arr2: any[]): Array<T>;
+  unique(): Array<T>;
+  random(): T;
+  mean(): number;
+  median(): number;
+  mode(): Array<T> | number | null;
+  range(): number;
+  sd(): number;
+  variance(): number;
+
 };
 
 const alphabet = new Set('abcdefghijklmnopqrstuvwxyz');
 const numbers = new Set('0123456789');
 
-let testArray = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 'b', 6, 7, 8, 9, 10, 'a'];
-let testArray2 = [1, 2, 'b', 4, 5, 6, 7, 8, 9, 10, 'a'];
+
 
 // shuffles array in place (mutates array)
 Array.prototype.shuffle = function() {
@@ -89,11 +97,61 @@ Array.prototype.math = function(operand: string, number: number) {
     });
   }
 
-    
+  //returns array as a unique set (creates new array)
+  Array.prototype.unique = function() {
+    return [...new Set(this)];
+  }
+  
+  //picks a random element from an array 
+  Array.prototype.random = function() {
+    return this[Math.floor(Math.random() * this.length)];
+  }
 
+  //finds the average of an array
+  Array.prototype.mean = function() {
+    return this.reduce((a, b) => a + b) / this.length;
+  }
 
+  //finds the median of an array
+  Array.prototype.median = function() {
+    let sorted = this.sort((a, b) => a - b);
+    let middle = Math.floor(sorted.length / 2);
+    if (sorted.length % 2) return sorted[middle];
+    else return (sorted[middle - 1] + sorted[middle]) / 2;
+  }
 
-let x = testArray.intersection(testArray2);
+  //finds the mode of an array
+  Array.prototype.mode = function() {
+    let counts = new Map();
+    this.forEach((n: any) => counts.has(n) ? counts.set(n, counts.get(n) + 1) : counts.set(n, 1));
+    let max = Math.max(...counts.values())
+    return [...counts].filter((n) => n[1] === max).map((n) => n[0]);
+  }
+
+  //finds the range of an array
+  Array.prototype.range = function() {
+    let sorted = this.sort((a, b) => a - b);
+    return sorted[sorted.length - 1] - sorted[0];
+  }
+
+  //finds the standard deviation of an array
+  Array.prototype.sd = function() {
+    let mean = this.mean();
+    let sum = this.reduce((a, b) => a + (b - mean) ** 2, 0);
+    return Math.sqrt(sum / (this.length));
+  }
+
+  //finds the variance of an array
+  Array.prototype.variance = function() {
+    let mean = this.mean();
+    let sum = this.reduce((a, b) => a + (b - mean) ** 2, 0);
+    return sum / (this.length);
+  }
+
+let testArray = [2, 10];
+let testArray2 = [1, 2, 'b', 4, 5, 6, 7, 8, 9, 10, 'a'];
+
+let x = testArray.sd();
 
 x;
 testArray2
