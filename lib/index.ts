@@ -15,8 +15,6 @@ Array.prototype.chunk = function(n: number) {
     return Array(Math.ceil(this.length / n)).fill(0).map((_: any, i: number) => this.slice(i * n, i * n + n));
 }
 
-console.log('hi');
-
 // removes falsey values from array (mutates array)
 Array.prototype.truthy = function() {
     return this.filter(Boolean);
