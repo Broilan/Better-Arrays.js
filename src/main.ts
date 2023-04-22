@@ -5,13 +5,14 @@ interface Array<T> {
   deepFlat(): Array<T>;
   math(operand: string, number?: number): Array<T>;
   matrixMath(callback: (n: number, i: number) => number, arr2: any[]): Array<T>;
+  intersection(arr2: any[]): Array<T>;
 };
 
 const alphabet = new Set('abcdefghijklmnopqrstuvwxyz');
 const numbers = new Set('0123456789');
 
-let testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let testArray2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let testArray = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 'b', 6, 7, 8, 9, 10, 'a'];
+let testArray2 = [1, 2, 'b', 4, 5, 6, 7, 8, 9, 10, 'a'];
 
 // shuffles array in place (mutates array)
 Array.prototype.shuffle = function() {
@@ -70,16 +71,30 @@ Array.prototype.math = function(operand: string, number: number) {
     
  // perform an operation between two indeces of two arrays (creates new array)
  Array.prototype.matrixMath = function(callback, arr2) {
-    return this.map((n, i) => {
-        if (typeof n === 'number') {
+    return this.flatMap((n, i) => {
+        if (typeof n === 'number' && typeof arr2[i] === 'number') {
             return callback(n, arr2[i]);
-        } else return n;
+        } else return [n, arr2[i]];
     });
  }
+
+ //returns the intersection between two arrays (creates new array)
+  Array.prototype.intersection = function(arr2) {
+    let arr2copy = [...arr2];
+    return this.filter((n) => {
+        if (arr2copy.includes(n)) {
+            arr2copy.splice(arr2copy.indexOf(n), 1);
+            return true;
+        } else return false;
+    });
+  }
+
     
 
 
 
-let x = testArray.matrixMath(((n, n2) => n + n2), testArray2);
+let x = testArray.intersection(testArray2);
+
 x;
+testArray2
 testArray;
