@@ -146,7 +146,7 @@ Array.prototype.math = function(operand: string, number: number) {
     return this[Math.floor(Math.random() * this.length)];
   }
 
-  //returns everyNth element of an array
+  //returns everyNth index of an array
   Array.prototype.nthIndex = function(n: number) {
     return this.filter((_: any, i: number) => i % n === 0);
   }
@@ -220,3 +220,196 @@ Array.prototype.math = function(operand: string, number: number) {
     this.forEach((n: any) => counts.has(n) ? counts.set(n, counts.get(n) + 1) : counts.set(n, 1));
     return counts;
   }
+
+  // shuffle
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.shuffle();
+  //output ---> [ 5, 1, 3, 2, 4, 7, 6, 10, 9, 8 ]
+
+  // chunk
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.chunk(1);
+  //output ---> [ [ 1 ], [ 2 ], [ 3 ], [ 4 ], [ 5 ], [ 6 ], [ 7 ], [ 8 ], [ 9 ], [ 10 ] ]
+  // arr.chunk(2);
+  //output ---> [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ], [ 7, 8 ], [ 9, 10 ] ]
+  // arr.chunk(3);
+  //output ---> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ], [ 10 ] ]
+
+  //truthy
+  // let arr = [1,2,3,4,5,6,7,8,9,10, undefined, false, 0];
+  // arr.truthy();
+  //output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+  //falsy
+  // let arr = [1,2,3,4,5,6,7,8,9,10, undefined, false, 0];
+  // arr.falsy();
+  //output ---> [ undefined, false, 0 ];
+
+  //deepFlat
+  // let arr = [1,2,[3,[4,[5]]],6,[7,8],[9,[10]]];
+  // arr.deepFlat();
+  //deepFlat output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+  //vs
+  //flat output ---> [ 1, 2, 3, [ 4, [Object] ], 6, [ 7, 8 ], [ 9, [ 10 ] ] ]
+
+  //math
+  //first argument accepts +, -, *, /, %, sqrt, and pow
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr = arr.math('+', 1);
+  //output ---> [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+
+  //matrixMath
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // let arr2 = [1,2,3,4,5,6,7,8,9,10];
+  // arr = arr.matrixMath((a: number, b: number) => a + b, arr2);
+  //output ---> [ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 ];
+
+  //intersection
+  // let arr = [1,'b',3,4,4,5,6,7,"a",9,10];
+  // let arr2 = [1,2,4,4,4,4,5,8,"a",10];
+  // arr = arr.intersection(arr2);
+  //output ---> [ 1, 4, 4, 5, 'a', 10 ]
+
+  //unique
+  // let arr = [1,1,1,1,1,1,1,1,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+  // arr = arr.unique();
+  //output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+
+  //uniqueBy (mutates)
+  // let arr = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+  // arr.uniqueBy(1);
+  //output ---> [1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+
+  //random
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.random();
+  //output1 ---> 4
+  //output2 ---> 8
+  //output3 ---> 1
+
+  //mean
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.mean();
+  //output ---> 5.5
+
+  //median
+  // let evenArr = [1,2,3,4,5,6,7,8,9,10];
+  // let oddArr = [1,2,3,4,5,6,7,8,9,10,11];
+  // evenArr.median();
+  //output ---> 5.5
+  // oddArr.median();
+  //output ---> 6
+
+  // mode
+  // let uniqueArr = [1,2,3,4,5,6,7,8,9,10];
+  // let nonUniqueArr = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10];
+  // let oneNonUniqueArr = [1,2,3,4,5,6,7,8,9,10,1];
+  // uniqueArr.mode();
+  //output ---> undefined
+  // nonUniqueArr.mode();
+  //output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+  // oneNonUniqueArr.mode();
+  //output ---> [ 1 ]
+
+  //range
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.range();
+  //output ---> 9
+
+  //sd (standard deviation)
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.sd();
+  //output ---> 2.8722813232690143
+
+  //variance
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.variance();
+  //output ---> 8.25
+
+  //tail
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.tail(1);
+  //output ---> [ 10 ]
+  // arr.tail(2);
+  //output ---> [ 9, 10 ]
+  // arr.tail(3);
+  //output ---> [ 8, 9, 10 ]
+
+  //padStart
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.padStart(15, 4);
+  //output ---> [ 4, 4, 4, 4, 4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+  // arr.padStart(12, 0);
+  //output ---> [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+  //padEnd
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.padEnd(15, 4);
+  //output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 4, 4, 4, 4, 4 ]
+  // arr.padEnd(12, 0);
+  //output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0 ]
+
+  //occurrences
+  // let arr = [1,2,3,4,5,6,7,8, 'a', 'a'];
+  // arr.occurrences();
+  //output ---> Map { 1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1, 7 => 1, 8 => 1, 'a' => 2 }
+
+  //move
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.move(1, 5);
+  //output ---> [ 1, 3, 4, 5, 6, 2, 7, 8, 9, 10 ]
+  // arr.move(0, 7);
+  //output ---> [ 3, 4, 5, 6, 2, 7, 8, 1, 9, 10 ]
+
+  //swap (mutates)
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.swap(1, 5);
+  //output ---> [ 1, 6, 3, 4, 5, 2, 7, 8, 9, 10 ]
+  // arr.swap(0, 9); // this operation assumed the one above never happened. If you did these back to back, both mutations would be applied.
+  //output ---> [ 10, 6, 3, 4, 5, 2, 7, 8, 9, 1 ]
+
+
+  // nthIndex
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.nthIndex(1);
+  //output ---> [1,2,3,4,5,6,7,8,9,10]
+  // arr.nthIndex(2);
+  //output ---> [1,3,5,7,9]
+  // arr.nthIndex(3);
+  //output ---> [1,4,7,10]
+
+ //come back to this later
+  //nthItem 
+  // let arr = [1, 1, 1, 2,3,4,5,6,7,8,9,10];
+  // arr.nthItem(1);
+  // arr.nthItem(2);
+
+  //strictEq
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // let arr2 = [1,2,3,4,5,6,7,8,9,10];
+  // arr.strictEq(arr2);
+  //output ---> true
+  // let arrx = [1,2,3,4,5,6,7,8,9,11];
+  // arr.strictEq(arrx);
+  //output ---> false
+
+  //looseEq
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // let arr2 = [2,1,4,3,6,5,7,8,9,10];
+  // arr.looseEq(arr2);
+  //output ---> true
+  // let arrx = [1,2,3,4,5,6,7,8,9,11];
+  // arr.looseEq(arrx);
+  //output ---> false
+
+  //rotate
+  // let arr = [1,2,3,4,5,6,7,8,9,10];
+  // arr.rotate(1);
+  //output ---> [ 10, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  // arr.rotate(-1);
+  //output ---> [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 ]
+  // arr.rotate(2);
+  //output ---> [ 9, 10, 1, 2, 3, 4, 5, 6, 7, 8 ]
+  // arr.rotate(-2);
+  //output ---> [ 3, 4, 5, 6, 7, 8, 9, 10, 1, 2 ]
+
