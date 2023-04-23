@@ -2,11 +2,11 @@
   "name": "@broilan/better-arrays",
   "author": "Tanner Eschmann",
   "private": false,
-  "version": "1.0.4",
+  "version": "1.0.6",
   "type": "module",
   "description": "Library of array methods",
-  "main": "./dist/index.umd.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/better-arrays.umd.cjs",
+  "module": "./dist/better-arrays.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
   "homepage": "https://github.com/TannerEsch/better-arrays#readme",
@@ -16,8 +16,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.cjs"
+      "import": "./dist/better-arrays.js",
+      "require": "./dist/better-arrays.umd.cjs"
     }
   },
   "files": [
@@ -26,8 +26,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "jest"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
