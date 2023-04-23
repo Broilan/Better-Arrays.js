@@ -1,3 +1,5 @@
+/// <reference path="./index.d.ts" />
+
 // shuffles array in place (mutates array)
 Array.prototype.shuffle = function() {
     let i = this.length;
