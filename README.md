@@ -201,7 +201,7 @@ Array.prototype.rotate(n: number)
 --------------------------
 
 #Type: rotate(n: number): Array<T>;  
-#Notes: Rotates each element of the array by n indeces. Accepts positive and negative integers extending from MAX_SAFE_INTEGER > n > MIN_SAFE_INTEGER;
+#Notes: Rotates each element of the array by n indeces. Accepts both positive and negative integers;
 #Mutates: true;
  
     ----------------------- demo -----------------------
