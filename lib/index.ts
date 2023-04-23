@@ -222,13 +222,14 @@ Array.prototype.math = function(operand: string, number: number) {
   }
 
   // shuffle
-  // let arr = [1,2,3,4,5,6,7,8,9,10];
-  // arr.shuffle();
+  let arr = [1,2,3,4,5,6,7,8,9,10];
+  arr.shuffle();
   //output ---> [ 5, 1, 3, 2, 4, 7, 6, 10, 9, 8 ]
 
   // chunk
   // let arr = [1,2,3,4,5,6,7,8,9,10];
-  // arr.chunk(1);
+  // arr.chunk(3);
+  // arr
   //output ---> [ [ 1 ], [ 2 ], [ 3 ], [ 4 ], [ 5 ], [ 6 ], [ 7 ], [ 8 ], [ 9 ], [ 10 ] ]
   // arr.chunk(2);
   //output ---> [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ], [ 7, 8 ], [ 9, 10 ] ]
@@ -248,37 +249,41 @@ Array.prototype.math = function(operand: string, number: number) {
   //deepFlat
   // let arr = [1,2,[3,[4,[5]]],6,[7,8],[9,[10]]];
   // arr.deepFlat();
+  // arr
   //deepFlat output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
   //vs
   //flat output ---> [ 1, 2, 3, [ 4, [Object] ], 6, [ 7, 8 ], [ 9, [ 10 ] ] ]
 
   //math
-  //first argument accepts +, -, *, /, %, sqrt, and pow
+  // first argument accepts +, -, *, /, %, sqrt, and pow
   // let arr = [1,2,3,4,5,6,7,8,9,10];
-  // arr = arr.math('+', 1);
+  // arr.math('+', 1);
   //output ---> [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 
   //matrixMath
   // let arr = [1,2,3,4,5,6,7,8,9,10];
   // let arr2 = [1,2,3,4,5,6,7,8,9,10];
-  // arr = arr.matrixMath((a: number, b: number) => a + b, arr2);
+  // arr.matrixMath((a: number, b: number) => a + b, arr2);
   //output ---> [ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 ];
 
   //intersection
   // let arr = [1,'b',3,4,4,5,6,7,"a",9,10];
   // let arr2 = [1,2,4,4,4,4,5,8,"a",10];
-  // arr = arr.intersection(arr2);
+  // arr.intersection(arr2);
+  // arr
   //output ---> [ 1, 4, 4, 5, 'a', 10 ]
 
   //unique
   // let arr = [1,1,1,1,1,1,1,1,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
-  // arr = arr.unique();
+  // arr.unique();
+  // arr
   //output ---> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 
   //uniqueBy (mutates)
   // let arr = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
   // arr.uniqueBy(1);
-  //output ---> [1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+  // arr
+  // output ---> [1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
 
   //random
   // let arr = [1,2,3,4,5,6,7,8,9,10];
@@ -329,6 +334,7 @@ Array.prototype.math = function(operand: string, number: number) {
   //tail
   // let arr = [1,2,3,4,5,6,7,8,9,10];
   // arr.tail(1);
+  // arr
   //output ---> [ 10 ]
   // arr.tail(2);
   //output ---> [ 9, 10 ]
@@ -338,6 +344,7 @@ Array.prototype.math = function(operand: string, number: number) {
   //padStart
   // let arr = [1,2,3,4,5,6,7,8,9,10];
   // arr.padStart(15, 4);
+  // arr
   //output ---> [ 4, 4, 4, 4, 4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
   // arr.padStart(12, 0);
   //output ---> [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
@@ -352,6 +359,7 @@ Array.prototype.math = function(operand: string, number: number) {
   //occurrences
   // let arr = [1,2,3,4,5,6,7,8, 'a', 'a'];
   // arr.occurrences();
+  // arr
   //output ---> Map { 1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1, 7 => 1, 8 => 1, 'a' => 2 }
 
   //move
@@ -371,7 +379,8 @@ Array.prototype.math = function(operand: string, number: number) {
 
   // nthIndex
   // let arr = [1,2,3,4,5,6,7,8,9,10];
-  // arr.nthIndex(1);
+  // arr.nthIndex(2);
+  // arr
   //output ---> [1,2,3,4,5,6,7,8,9,10]
   // arr.nthIndex(2);
   //output ---> [1,3,5,7,9]
@@ -405,6 +414,7 @@ Array.prototype.math = function(operand: string, number: number) {
   //rotate
   // let arr = [1,2,3,4,5,6,7,8,9,10];
   // arr.rotate(1);
+  // arr
   //output ---> [ 10, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
   // arr.rotate(-1);
   //output ---> [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 ]

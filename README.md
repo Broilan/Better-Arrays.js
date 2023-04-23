@@ -1,11 +1,10 @@
-
-
-// shuffles array in place
 ```javascript
-prototype: Array.prototype.shuffle();
+Array.prototype.shuffle();
+--------------------------
+
 type: shuffle(): Array<T>;
-notes: N/A;
-mutates: 
+notes: returns the array, but shuffled;
+mutates: true;
 
             ----- demo -----
 
@@ -17,12 +16,13 @@ mutates:
             ----- demo -----
 ```
 
-// breaks array into chunks of size n
 ```javascript
-prototype: Array.prototype.chunk(n: number)     
+Array.prototype.chunk(n: number) 
+--------------------------
+
 type: chunk(n: number): Array<T>;
-notes: N/A;
-mutates: 
+notes: returns an array of the input arrays values as arrays of length n;
+mutates: false;
 
             ----- demo -----
 
@@ -40,12 +40,13 @@ mutates:
             ----- demo -----           
 ```
 
-// removes falsy values from array
 ```javascript
-prototype: Array.prototype.truthy()      
+Array.prototype.truthy()    
+--------------------------
+
 type: truthy(): Array<T>;
-notes: N/A;
-mutates:
+notes: returns an array of the arrays truthy values;
+mutates: false;
 
             ----- demo -----      
 
@@ -59,13 +60,14 @@ mutates:
 
 ```
 
-//removes truthy values from array
 ```javascript
-prototype: Array.prototype.falsy()      
+Array.prototype.falsy()
+--------------------------
+
 type: falsy(): Array<T>;
-notes: N/A;
-mutates:
- 
+notes: returns an array of the arrays falsy values;
+mutates: false;
+
             ----- demo -----    
 
         let arr = [1,2,3,4,5,6,7,8,9,10, undefined, false, 0];
@@ -77,12 +79,13 @@ mutates:
 
 ```
 
-//completely flattens an array
 ```javascript
-prototype: Array.prototype.deepFlat()      
+Array.prototype.deepFlat()      
+--------------------------
+
 type: deepFlat(): Array<T>;
-notes: N/A;
-mutates:
+notes: returns an array of the arrays values, and flattens ALL, (excluding the outermost) brackets. Differs from Array.prototype.flat() in depth.;
+mutates: false;
  
             ----- demo -----  
 
@@ -95,13 +98,14 @@ mutates:
 
 ```
 
-// perform an operation on each index
 ```javascript
-prototype: Array.prototype.math(operand: string, number: number)     
+Array.prototype.math(operand: string, number: number) 
+--------------------------
+
 type: math(operand: string, number?: number): Array<T>;
 notes: first argument accepts +, -, *, /, %, sqrt, and pow, second argument accepts a number
-mutates:
- 
+mutates: false;
+
             ----- demo -----   
               
         let arr = [1,2,3,4,5,6,7,8,9,10];
@@ -113,12 +117,13 @@ mutates:
 
 ```
     
- // perform an operation between two indeces of two arrays
 ```javascript
-prototype: Array.prototype.matrixMath(callback:Function, arr2: any[])       
+Array.prototype.matrixMath(callback:Function, arr2: any[])       
+--------------------------
+
 type: matrixMath(callback: (n: number, i: number) => number, arr2: any[]): Array<T>;
-notes: N/A;
-mutates:
+notes: Applies an operation provided by the callback function to arr[i] and arr2[i]. Returns a map of the resulting values.;
+mutates: false;
  
             ----- demo -----   
 
@@ -132,12 +137,13 @@ mutates:
 
 ```
 
- // returns whether or not two array are equal in size, index, and values
 ```javascript
-prototype: Array.prototype.strictEq(arr2: any[])  
+Array.prototype.strictEq(arr2: any[])  
+--------------------------
+
 type: strictEq(arr2: any[]): boolean; 
-notes: N/A;
-mutates:
+notes: Determines whether or not two arrays have the same values at the same indeces. In other words, it strictly checks whether or not two arrays are the same.;
+mutates: false;
  
             ----- demo -----      
 
@@ -155,12 +161,14 @@ mutates:
             ----- demo -----    
 ```
 
-  //returns weather or not two arrays are equal in size, values
 ```javascript
-prototype: Array.prototype.looseEq(arr2: any[])
+Array.prototype.looseEq(arr2: any[])
+--------------------------
+
 type: looseEq(arr2: any[]): boolean;
-notes: N/A;
-mutates:
+notes: Checks if two arrays possess the same values. Unlike Array.prototype.strictEq, this function is indifferent to the indeces the values occur at. However, if...
+arr1.length !== arr2.length, it will return false.;    
+mutates: false;
  
             ----- demo -----     
 
@@ -178,12 +186,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //rotate the items of an array by n
 ```javascript
-prototype: Array.prototype.rotate(n: number)       
+Array.prototype.rotate(n: number)      
+--------------------------
+
 type: rotate(n: number): Array<T>;  
-notes: N/A;
-mutates:
+notes: Rotates each element of the array by n indeces. Accepts positive and negative integers extending from MAX_SAFE_INTEGER > n > MIN_SAFE_INTEGER;
+mutates: true;
  
             ----- demo -----    
 
@@ -204,12 +213,13 @@ mutates:
             ----- demo -----  
 ```
 
- //moves and item to a different index in an array
 ```javascript
-prototype: Array.prototype.move(from: number, to: number)     
+Array.prototype.move(from: number, to: number)    
+--------------------------
+
 type: move(from: number, to: number): Array<T>;
-notes: N/A;
-mutates:
+notes: Moves an element ---> arr[from] from one index to another. The element ---> arr[to] originally at index 'to' is moved one index to the left.  ;
+mutates: true;
  
             ----- demo -----     
 
@@ -218,18 +228,16 @@ mutates:
         arr.move(1, 5);
         output ---> [ 1, 3, 4, 5, 6, 2, 7, 8, 9, 10 ]
 
-        arr.move(0, 7);
-        output ---> [ 3, 4, 5, 6, 2, 7, 8, 1, 9, 10 ]  
-
             ----- demo -----  
 ```
 
-   // swap two indeces in an array
 ```javascript
-prototype: Array.prototype.swap(from: number, to: number)
+Array.prototype.swap(from: number, to: number)
+--------------------------
+
 type: swap(from: number, to: number): Array<T>;
-notes: N/A;
-mutates:
+notes: Swaps the indeces of two elements.;
+mutates: true;
  
             ----- demo -----  
 
@@ -238,22 +246,20 @@ mutates:
         arr.swap(1, 5);
         output ---> [ 1, 6, 3, 4, 5, 2, 7, 8, 9, 10 ]
 
-        arr.swap(0, 9); // this operation assumes the one above never happened. If you did these back to back, both 'mutations' would be applied.
-        output ---> [ 10, 6, 3, 4, 5, 2, 7, 8, 9, 1 ]  
-
             ----- demo -----  
 ```
 
- //returns the intersection between two arrays
 ```javascript
-prototype: Array.prototype.intersection(arr2: any[]) 
+Array.prototype.intersection(arr2: any[]) 
+--------------------------
+
 type: intersection(arr2: any[]): Array<T>;
-notes: N/A;
-mutates:
+notes: Returns an array of the elements held by both arrays.;
+mutates: false;
  
             ----- demo -----     
 
-         let arr = [1,'b',3,4,4,5,6,7,"a",9,10];
+        let arr = [1,'b',3,4,4,5,6,7,"a",9,10];
         let arr2 = [1,2,4,4,4,4,5,8,"a",10];
 
         arr = arr.intersection(arr2);
@@ -262,12 +268,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //returns array as a unique set
 ```javascript
-prototype: Array.prototype.unique()       
+Array.prototype.unique()  
+--------------------------
+
 type: unique(): Array<T>;
-notes: N/A;
-mutates:
+notes: Returns an array of strictly unique values.;
+mutates: false;
  
             ----- demo -----  
         let arr = [1,1,1,1,1,1,1,1,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
@@ -278,12 +285,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //removes all instances of a value except one
 ```javascript
-prototype: Array.prototype.uniqueBy(value: any)
+Array.prototype.uniqueBy(value: any)
+--------------------------
+
 type:uniqueBy(value: T): Array<T>;
-notes: N/A;
-mutates:
+notes: Returns an array where the value passed as an argument is reduced to only one occurrence.;
+mutates: true;
  
             ----- demo -----  
 
@@ -295,12 +303,13 @@ mutates:
             ----- demo -----  
 ```   
 
-  //picks a random element from an array 
 ```javascript
-prototype: Array.prototype.random()      
+Array.prototype.random()      
+--------------------------
+
 type: random(): T;
-notes: N/A;
-mutates:
+notes: Picks a random num from the array.;
+mutates: false;
  
             ----- demo -----  
 
@@ -315,12 +324,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //returns everyNth element of an array
 ```javascript
-prototype: Array.prototype.nthIndex(n: number) 
+Array.prototype.nthIndex(n: number) 
+--------------------------
+
 type: nthIndex(n: number): Array<T>;
-notes: N/A;
-mutates:
+notes: Returns an array of the values at index % argument === 0;
+mutates: false;
  
             ----- demo -----   
         let arr = [1,2,3,4,5,6,7,8,9,10];
@@ -337,24 +347,26 @@ mutates:
             ----- demo -----  
 ```
 
-  //returns everyNth element of an array
 ```javascript
-prototype: Array.prototype.nthItem(n: number)
+Array.prototype.nthItem(n: number)
+--------------------------
+
 type: nthItem(n: number): Array<T>;
 notes: N/A;
-mutates:
+mutates: N/A
  
             ----- demo -----
             //in dev           
             ----- demo -----  
 ```
 
-  //finds the average of an array
 ```javascript
-prototype: Array.prototype.mean() 
+Array.prototype.mean() 
+--------------------------
+
 type: mean(): number;
-notes: N/A;
-mutates:
+notes: Returns the average of an array of numbers.;
+mutates: false;
  
             ----- demo -----  
 
@@ -366,12 +378,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //finds the median of an array
 ```javascript
-prototype: Array.prototype.median()
+Array.prototype.median()
+--------------------------
+
 type: median(): number;
-notes: N/A;
-mutates:
+notes: Returns the center of an array. If arr.length % 2 === 0, it returns the quotient of the sum of the two centermost numbers divided by two.;
+mutates: false;
  
             ----- demo -----  
 
@@ -387,12 +400,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //finds the mode of an array
 ```javascript
-prototype: Array.prototype.mode()
+Array.prototype.mode()
+--------------------------
+
 type: mode(): Array<T> | number | null;
-notes: N/A;
-mutates:
+notes: Returns the number which occurs the most in an array. If two or more numbers are equivalent in their number of occurrences && they occur the most in the Array, an array of those numbers is returned.;
+mutates: false;
  
             ----- demo -----    
         let uniqueArr = [1,2,3,4,5,6,7,8,9,10];
@@ -411,12 +425,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //finds the range of an array
 ```javascript
-prototype: Array.prototype.range() 
+Array.prototype.range() 
+--------------------------
+
 type: range(): number;
-notes: N/A;
-mutates:
+notes: Returns the difference between the greatest and smallest numbers in an array.;
+mutates: false;
  
             ----- demo -----    
 
@@ -428,12 +443,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //finds the standard deviation of an array
 ```javascript
-prototype: Array.prototype.sd()
+Array.prototype.sd()
+--------------------------
+
 type: sd(): number;
-notes: N/A;
-mutates:
+notes: Returns the standard deviation of an array, or sqrt(Array.prototype.variance()).;
+mutates: false;
  
             ----- demo ----- 
 
@@ -447,10 +463,12 @@ mutates:
 
   //finds the variance of an array
 ```javascript
-prototype: Array.prototype.variance() 
+Array.prototype.variance() 
+--------------------------
+
 type: variance(): number;
-notes: N/A;
-mutates:
+notes: Returns the variance in array, or Array.prototype.sd()^2.;
+mutates: false;
  
             ----- demo -----  
 
@@ -462,12 +480,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //returns a slice 'n' indeces from the end of an array
 ```javascript
-prototype: Array.prototype.tail(number:number)  
+Array.prototype.tail(number:number)  
+--------------------------
+
 type: tail(number: number): Array<T>;
-notes: N/A;
-mutates:
+notes: returns a slice of n length extending from the end of an array.;
+mutates: false;
  
             ----- demo -----  
 
@@ -485,12 +504,13 @@ mutates:
             ----- demo -----  
 ```  
 
-  //add padding to the start of an array
 ```javascript
-prototype: Array.prototype.padStart(padding: number, value: any) 
+Array.prototype.padStart(padding: number, value: any) 
+--------------------------
+
 type:  padStart(padding: number, value:any): Array<T>;
-notes: N/A;
-mutates:
+notes: Adds padding to the start of an array. Arg1 is the desired length of the array, and Arg2 is what you'd like to fill the extra spaces with.;
+mutates: false;
  
             ----- demo -----   
         let arr = [1,2,3,4,5,6,7,8,9,10];
@@ -504,12 +524,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //add padding to the end
 ```javascript
-prototype: Array.prototype.padEnd(padding: number, value: any)
+Array.prototype.padEnd(padding: number, value: any)
+--------------------------
+
 type: padEnd(padding: number, value:any): Array<T>;
-notes: N/A;
-mutates:
+notes: Adds padding to the end of an array. Arg1 is the desired length of the array, and Arg2 is what you'd like to fill the extra spaces with.;
+mutates: false;
  
             ----- demo -----      
 
@@ -524,12 +545,13 @@ mutates:
             ----- demo -----  
 ```
 
-  //returns a map of the occurrences of each element 
 ```javascript
-prototype: Array.prototype.occurrences() 
+Array.prototype.occurrences() 
+--------------------------
+
 type: occurrences(): Map<T, number>;
-notes: N/A;
-mutates:
+notes: Returns a map of the occurrences of each number, arr[i] in an array.;
+mutates: false;
  
             ----- demo -----  
 
