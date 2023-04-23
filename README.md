@@ -471,7 +471,6 @@ Array.prototype.sd()
     ----------------------- demo -----------------------
 ```
 
-  //finds the variance of an array
 ```javascript
 Array.prototype.variance() 
 --------------------------
