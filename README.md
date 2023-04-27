@@ -1,5 +1,7 @@
 # Better-Arrays.js Library
 -----------------------------------------------------
+## NPM: https://www.npmjs.com/package/@broilan/better-arrays?activeTab=readme
+
 ## INSTALL: npm i @broilan/better-arrays;
 
 ## IMPORT: import '@broilan/better-arrays';
