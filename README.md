@@ -1,14 +1,24 @@
 # Better-Arrays.js Library
 -----------------------------------------------------
-## NPM: https://www.npmjs.com/package/@broilan/better-arrays?activeTab=readme
+## NPM
 
-## INSTALL: npm i @broilan/better-arrays;
+https://www.npmjs.com/package/@broilan/better-arrays?activeTab=readme
 
-## IMPORT: import '@broilan/better-arrays';
+## INSTALL
 
-## REQUIRE: require('@broilan/better-arrays');
+npm i @broilan/better-arrays;
 
-## NOTE: You only need to import this in one file. Once imported, you have global access to every method in the library, no matter what file you're working in.
+## IMPORT
+
+import '@broilan/better-arrays';
+
+## REQUIRE
+
+require('@broilan/better-arrays');
+
+## NOTE
+
+You only need to import this in one file. Once imported, you have global access to every method in the library, no matter what file you're working in.
 
 ```javascript
 Array.prototype.shuffle();
